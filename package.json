@@ -1,10 +1,16 @@
 {
   "name": "lassie-ui",
   "version": "1.0.0",
-  "main": "src/index.js",
   "repository": "git@github.com:ederzadravec/lassie-ui.git",
   "author": "Éder Zadravec",
   "license": "MIT",
+  "main": "build/module/index.js",
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "build": "bob build"
+  },
   "private": false,
   "dependencies": {
     "styled-components": "^5.0.1"
