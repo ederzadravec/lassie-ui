@@ -1,0 +1,23 @@
+{
+  "name": "lassie-ui",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:ederzadravec/lassie-ui.git",
+  "author": "Éder Zadravec",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "styled-components": "^5.0.1"
+  },
+  "devDependencies": {
+    "@react-native-community/bob": "^0.10.0"
+  },
+  "@react-native-community/bob": {
+    "source": "src",
+    "output": "build",
+    "targets": [
+      "commonjs",
+      "module"
+    ]
+  }
+}
