@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Form · Lassie UI</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Check the [documentation](https://docusaurus.io) for how to use Docusaurus."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Form · Lassie UI"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ederzadravec.github.io/lassie-ui/"/><meta property="og:description" content="Check the [documentation](https://docusaurus.io) for how to use Docusaurus."/><meta property="og:image" content="https://ederzadravec.github.io/lassie-ui/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ederzadravec.github.io/lassie-ui/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/lassie-ui/"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/lassie-ui/js/scrollSpy.js"></script><link rel="stylesheet" href="/lassie-ui/css/main.css"/><script src="/lassie-ui/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/lassie-ui/"><h2 class="headerTitle">Lassie UI</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/lassie-ui/docs/getting_started" target="_self">Docs</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Hooks</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">LASSIE UI</h3><ul class=""><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/getting_started">Getting Started</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Components</h3><ul class=""><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_alert">Alert</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_button">Button</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_date_picker">Date Picker</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_form_grid">Form Grid</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_grid">Grid</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_header">Header</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_icon">Icon</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_loader">Loader</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_select">Select</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_space">Space</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_text">Text</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_text_input">Text Input</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/components_theme">Theme</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Hooks</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/lassie-ui/docs/hooks_use_form">Form</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/hooks_use_loading">Loading</a></li><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/hooks_use_toggle">Toggle</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Helpers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/lassie-ui/docs/helpers_get_theme">Get Theme</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Form</h1></header><article><div><span><p>Check the <a href="https://docusaurus.io">documentation</a> for how to use Docusaurus.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/lassie-ui/docs/components_theme"><span class="arrow-prev">← </span><span>Theme</span></a><a class="docs-next button" href="/lassie-ui/docs/hooks_use_loading"><span>Loading</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/lassie-ui/" class="nav-home"></a><div><h5>Docs</h5><a href="/lassie-ui/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/lassie-ui/docs/en/doc2.html">Guides (or other categories)</a><a href="/lassie-ui/docs/en/doc3.html">API Reference (or other categories)</a></div><div></div><div><h5>More</h5><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2020 Eder Zadravec</section></footer></div></body></html>

@@ -1,0 +1,30 @@
+{
+  "docs": {
+    "LASSIE UI": [
+      "getting_started"
+    ],
+    "Components": [
+      "components_alert",
+      "components_button",
+      "components_date_picker",
+      "components_form_grid",
+      "components_grid",
+      "components_header",
+      "components_icon",
+      "components_loader",
+      "components_select",
+      "components_space",
+      "components_text",
+      "components_text_input",
+      "components_theme"
+    ],
+    "Hooks": [
+      "hooks_use_form",
+      "hooks_use_loading",
+      "hooks_use_toggle"
+    ],
+    "Helpers": [
+      "helpers_get_theme"
+    ]
+  }
+}
