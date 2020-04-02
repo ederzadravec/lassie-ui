@@ -13,7 +13,10 @@
   },
   "private": false,
   "dependencies": {
-    "styled-components": "^5.0.1"
+    "ramda": "^0.27.0",
+    "react-native-vector-icons": "^6.6.0",
+    "styled-components": "^5.0.1",
+    "throttle-debounce": "^2.1.0"
   },
   "devDependencies": {
     "@react-native-community/bob": "^0.10.0"
@@ -22,7 +25,6 @@
     "source": "src",
     "output": "build",
     "targets": [
-      "commonjs",
       "module"
     ]
   }
