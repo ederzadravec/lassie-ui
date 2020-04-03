@@ -5,7 +5,7 @@ title: Getting Started
 
 ## Install
 
-To install `lassie-iu`:
+To install `lassie-ui`:
 
 run `yarn add @ederzadravec/lassie-ui` or `npm install @ederzadravec/lassie-ui`
 
