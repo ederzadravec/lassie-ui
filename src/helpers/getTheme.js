@@ -337,6 +337,7 @@ const defaultPalette = (theme = {}) => {
 
   return {
     text,
+    ...theme.palette,
     primary: {
       light: colors.teal[500],
       main: colors.teal[700],
@@ -372,7 +373,6 @@ const defaultPalette = (theme = {}) => {
       text: getContrastText(colors.grey[700], text),
       ...theme.palette?.disabled,
     },
-    ...theme.pallete,
   };
 };
 
