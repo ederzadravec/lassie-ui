@@ -1,12 +1,12 @@
 {
   "name": "@ederzadravec/lassie-ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "git@github.com:ederzadravec/lassie-ui.git",
   "author": "Éder Zadravec",
   "license": "MIT",
   "main": "build/module/index.js",
   "files": [
-    "lib/*"
+    "build/*"
   ],
   "scripts": {
     "build": "bob build"
