@@ -6,7 +6,7 @@ export { FormGrid } from './FormGrid';
 export { FormLabel } from './FormLabel';
 export { Grid } from './Grid/Grid';
 export { Header } from './Header';
-// export { Icon } from './Icon';
+export { Icon } from './Icon';
 export { Loader } from './Loader';
 export { Select } from './Select';
 export { Space } from './Space';

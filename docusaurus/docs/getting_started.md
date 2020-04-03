@@ -5,7 +5,13 @@ title: Getting Started
 
 ## Install
 
+To install `lassie-iu`:
+
 run `yarn add @ederzadravec/lassie-ui` or `npm install @ederzadravec/lassie-ui`
+
+Also install the necessary dependencies:
+
+run `yarn add styled-components react-native-vector-icons` or `yarn install styled-components react-native-vector-icons`
 
 ## How to Use
 

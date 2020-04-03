@@ -372,6 +372,7 @@ const defaultPalette = (theme = {}) => {
       text: getContrastText(colors.grey[700], text),
       ...theme.palette?.disabled,
     },
+    ...theme.pallete,
   };
 };
 
@@ -381,7 +382,6 @@ export const getTheme = (theme = {}) => {
   return {
     palette: {
       ...palette,
-      ...theme.pallete,
       readableColor,
       getContrastText,
       colors,

@@ -11,6 +11,7 @@ export {
   FormLabel,
   Grid,
   Header,
+  Icon,
   Loader,
   Select,
   Space,
