@@ -10,6 +10,8 @@ const Label = styled.Text`
   position: absolute;
   font-size: 12;
   background: transparent;
+  width: 100%;
+  text-align: ${({ align }) => align};
 
   color: ${({ hasError, theme }) =>
     hasError ? theme.palette.error.main : theme.typography.text.color};
@@ -28,13 +30,14 @@ const Label = styled.Text`
 const Input = styled.TextInput`
   height: ${({ theme }) => theme.spacing.unit * 4};
   margin-top: ${({ theme }) => theme.spacing.unit * 2};
-  margin-top: auto
+  margin-top: auto;
   font-size: 14;
   z-index: 2;
   border-bottom-width: 1;
   border-bottom-color: ${({ hasError, theme }) =>
     hasError ? theme.palette.error.main : theme.palette.colors.grey[400]};
   padding: 0;
+  text-align: ${({ align }) => align};
 `;
 
 const createDebounce = debounce => debounceFunc(debounce, exec => exec());
@@ -52,6 +55,7 @@ export const TextInput = ({
   onBlur,
   onFocus,
   onEndEditing,
+  align,
   ...props
 }) => {
   const [{ init, value, isFocused }, useSetState] = React.useState({
@@ -94,12 +98,13 @@ export const TextInput = ({
 
   return (
     <BaseInput style={style} error={error}>
-      <Label as={Text} float={floatingLabel} hasError={!!error}>
+      <Label as={Text} align={align} float={floatingLabel} hasError={!!error}>
         {label}
       </Label>
 
       <Input
         {...props}
+        align={align}
         value={value}
         hasValue={hasValue}
         onChangeText={handleOnChange}
@@ -121,6 +126,7 @@ TextInput.defaultProps = {
   onEndEditing: () => {},
   floatLabel: false,
   debounce: 250,
+  align: 'left',
 };
 
 TextInput.proptypes = {
@@ -134,4 +140,5 @@ TextInput.proptypes = {
   onFocus: PropTypes.func,
   floatLabel: PropTypes.bool,
   debounce: PropTypes.number,
+  align: PropTypes.oneOf(['left', 'center', 'right']),
 };
