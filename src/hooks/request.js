@@ -1,10 +1,6 @@
-import React from "react";
+import React from 'react';
 
-export const useRequest = (
-  getData = () => {},
-  autoFetch = true,
-  update = []
-) => {
+export const useRequest = (getData = () => {}, autoFetch = true, update = []) => {
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState(null);
 
@@ -12,14 +8,19 @@ export const useRequest = (
     if (autoFetch) fetchData();
   }, update);
 
-  const fetchData = async () => {
+  const fetchData = async (data) => {
     setLoading(true);
 
-    const response = await getData();
+    const response = await getData(data).catch((err) => {
+      console.log('request error', err);
+      return err.response;
+    });
 
     setLoading(false);
 
     setData(response);
+
+    return response?.data;
   };
 
   return [data?.data, { loading, ...data }, fetchData];

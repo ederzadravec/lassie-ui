@@ -11,16 +11,14 @@ export const useForm = (
     triedSave: false,
   });
 
-  const setState = data =>
-    useSetState(prev => ({
+  const setState = (data) =>
+    useSetState((prev) => ({
       ...prev,
       ...data,
       values: { ...prev.values, ...data.values },
       errors: data.errors || {},
-      touched: [ ...prev.touched, ...(data.touched || [])],
+      touched: [...prev.touched, ...(data.touched || [])],
     }));
-
-  console.log('aqui', { values, errors, touched, triedSave });
 
   React.useEffect(() => {
     const data = initialValues || {};
@@ -42,15 +40,17 @@ export const useForm = (
     }, []);
   };
 
-  const onChange = React.useCallback((name, remove = []) => value => {
-    const data = { [name]: value };
+  const onChange = React.useCallback(
+    (name, remove = []) => (value) => {
+      const data = { [name]: value };
 
-    setValues(data, remove);
-  }, [values]);
+      setValues(data, remove);
+    },
+    [values]
+  );
 
   const setValues = (data, remove = []) => {
     const newValues = { ...R.omit(remove, values), ...data };
-    console.log({ values, newValues })
     const newErrors = { ...validateData(newValues) };
     const newTouched = [...touched, ...Object.keys(data)];
 
@@ -61,7 +61,15 @@ export const useForm = (
     });
   };
 
-  const getError = name => {
+  const setError = (errors) => {
+    const newTouched = [...touched, ...Object.keys(errors)];
+    setState({
+      errors,
+      touched: [...new Set(newTouched)],
+    });
+  };
+
+  const getError = (name) => {
     return errors[name] && (touched.indexOf(name) !== -1 || triedSave) ? errors[name] : null;
   };
 
@@ -69,7 +77,7 @@ export const useForm = (
     return data[name];
   };
 
-  const trySave = (callback = () => {}) => e => {
+  const trySave = (callback = () => {}) => (e) => {
     if (!R.isEmpty(errors) && !R.isNil(errors)) {
       setState({ triedSave: true });
       return false;
@@ -81,7 +89,7 @@ export const useForm = (
   const form = {
     hasErrors: !R.isEmpty(errors) && !R.isNil(errors),
     getValue,
-    setError: errors => setState({ errors }),
+    setError,
     getError,
     errors,
     values,
