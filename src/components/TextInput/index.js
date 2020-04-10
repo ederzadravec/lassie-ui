@@ -40,7 +40,7 @@ const Input = styled.TextInput`
   text-align: ${({ align }) => align};
 `;
 
-const createDebounce = debounce => debounceFunc(debounce, exec => exec());
+const createDebounce = (debounce) => debounceFunc(debounce, (exec) => exec());
 
 export const TextInput = ({
   name,
@@ -63,7 +63,7 @@ export const TextInput = ({
     value: null,
     isFocused: false,
   });
-  const setState = data => useSetState(prev => ({ ...prev, ...data }));
+  const setState = (data) => useSetState((prev) => ({ ...prev, ...data }));
 
   React.useEffect(() => {
     if (value !== valueProp) setState({ value: valueProp });
@@ -78,7 +78,7 @@ export const TextInput = ({
   const hasValue = !R.isNil(value) && !R.isEmpty(value);
   const floatingLabel = hasValue || !!placeholder || floatLabel || isFocused;
 
-  const handleOnChange = text => {
+  const handleOnChange = (text) => {
     setState({ value: text, init: true });
   };
 
@@ -103,6 +103,7 @@ export const TextInput = ({
       </Label>
 
       <Input
+        autoCapitalize="none"
         {...props}
         align={align}
         value={value}

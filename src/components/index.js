@@ -1,5 +1,6 @@
 export { Alert } from './Alert/Alert';
 export { BaseInput } from './BaseInput';
+export { BoxInput } from './BoxInput/BoxInput';
 export { Button } from './Button/Button';
 // export { DatePicker } from './DatePicker';
 export { FormGrid } from './FormGrid';
