@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import R from 'ramda';
 import { debounce as debounceFunc } from 'throttle-debounce';
+import TextInputMask from 'react-native-text-input-mask';
 
 import { BaseInput, Text } from '../';
 
@@ -27,7 +28,7 @@ const Label = styled.Text`
   `};
 `;
 
-const Input = styled.TextInput`
+const Input = styled(TextInputMask)`
   height: ${({ theme }) => theme.spacing.unit * 4};
   margin-top: ${({ theme }) => theme.spacing.unit * 2};
   margin-top: auto;
@@ -56,11 +57,13 @@ export const TextInput = ({
   onFocus,
   onEndEditing,
   align,
+  mask,
   ...props
 }) => {
-  const [{ init, value, isFocused }, useSetState] = React.useState({
+  const [{ init, value, secoundValue, isFocused }, useSetState] = React.useState({
     init: false,
     value: null,
+    secoundValue: null,
     isFocused: false,
   });
   const setState = (data) => useSetState((prev) => ({ ...prev, ...data }));
@@ -72,14 +75,14 @@ export const TextInput = ({
   const onChangeDebounce = React.useCallback(createDebounce(debounce), []);
 
   React.useEffect(() => {
-    if (init) onChangeDebounce(() => onChange(value));
+    if (init) onChangeDebounce(() => onChange(value, secoundValue));
   }, [value]);
 
   const hasValue = !R.isNil(value) && !R.isEmpty(value);
-  const floatingLabel = hasValue || !!placeholder || floatLabel || isFocused;
+  const floatingLabel = mask || hasValue || !!placeholder || floatLabel || isFocused;
 
-  const handleOnChange = (text) => {
-    setState({ value: text, init: true });
+  const handleOnChange = (maskedValue, unMasked) => {
+    setState({ value: maskedValue, secoundValue: unMasked, init: true });
   };
 
   const handleOnBlur = (...props) => {
@@ -105,13 +108,13 @@ export const TextInput = ({
       <Input
         autoCapitalize="none"
         {...props}
+        mask={mask}
         align={align}
         value={value}
         hasValue={hasValue}
         onChangeText={handleOnChange}
         onBlur={handleOnBlur}
         onFocus={handleOnFocus}
-        onEndEditing={debounceFunc(debounce, handleOnEndEditing)}
         onEndEditing={handleOnEndEditing}
         placeholder={placeholder}
         hasError={!!error}
@@ -142,4 +145,5 @@ TextInput.proptypes = {
   floatLabel: PropTypes.bool,
   debounce: PropTypes.number,
   align: PropTypes.oneOf(['left', 'center', 'right']),
+  mask: PropTypes.string,
 };
