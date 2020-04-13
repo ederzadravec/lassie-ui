@@ -1,6 +1,6 @@
 # Lassie-ui
 
-![lassie logo](https://github.com/ederzadravec/lassie-ui/tree/master/src/assets/img/logo.png 'Lassie UI')
+![lassie logo](https://github.com/ederzadravec/lassie-ui/blob/master/src/assets/img/logo.png?raw=true 'Lassie UI')
 
 This is the newest `react-native` library to streamline the development of new applications
 
