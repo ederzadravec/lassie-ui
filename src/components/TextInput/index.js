@@ -5,7 +5,7 @@ import R from 'ramda';
 import { debounce as debounceFunc } from 'throttle-debounce';
 import TextInputMask from 'react-native-text-input-mask';
 
-import { BaseInput, Text } from '../';
+import { BaseInput, Text, hooks } from '../../';
 
 const Label = styled.Text`
   position: absolute;
@@ -60,13 +60,12 @@ export const TextInput = ({
   mask,
   ...props
 }) => {
-  const [{ init, value, secoundValue, isFocused }, useSetState] = React.useState({
+  const [{ init, value, secoundValue, isFocused }, setState] = hooks.useState({
     init: false,
     value: null,
     secoundValue: null,
     isFocused: false,
   });
-  const setState = (data) => useSetState((prev) => ({ ...prev, ...data }));
 
   React.useEffect(() => {
     if (value !== valueProp) setState({ value: valueProp });
