@@ -32,6 +32,8 @@ const Input = styled(TextInputMask)`
   height: ${({ theme }) => theme.spacing.unit * 4};
   margin-top: ${({ theme }) => theme.spacing.unit * 2};
   margin-top: auto;
+  color: ${({ theme, editable }) =>
+    editable ? theme.typography.text.color : theme.palette.disabled.main};
   font-size: 14;
   z-index: 2;
   border-bottom-width: 1;
@@ -58,8 +60,10 @@ export const TextInput = ({
   onEndEditing,
   align,
   mask,
+  disabled,
   ...props
 }) => {
+  let inputRef = null;
   const [{ init, value, secoundValue, isFocused }, setState] = hooks.useState({
     init: false,
     value: null,
@@ -68,7 +72,11 @@ export const TextInput = ({
   });
 
   React.useEffect(() => {
-    if (value !== valueProp) setState({ value: valueProp });
+    if (value !== valueProp) {
+      setState({ value: valueProp });
+
+      if (inputRef) inputRef.setNativeProps({ text: valueProp });
+    }
   }, [valueProp]);
 
   const onChangeDebounce = React.useCallback(createDebounce(debounce), []);
@@ -106,7 +114,9 @@ export const TextInput = ({
 
       <Input
         autoCapitalize="none"
+        refInput={(ref) => (inputRef = ref)}
         {...props}
+        editable={!disabled}
         mask={mask}
         align={align}
         value={value}
@@ -130,6 +140,8 @@ TextInput.defaultProps = {
   floatLabel: false,
   debounce: 250,
   align: 'left',
+  mask: null,
+  disabled: false,
 };
 
 TextInput.proptypes = {
@@ -142,6 +154,7 @@ TextInput.proptypes = {
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
   floatLabel: PropTypes.bool,
+  disabled: PropTypes.bool,
   debounce: PropTypes.number,
   align: PropTypes.oneOf(['left', 'center', 'right']),
   mask: PropTypes.string,
