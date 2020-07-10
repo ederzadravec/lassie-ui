@@ -14,6 +14,7 @@ export {
   Header,
   Icon,
   Loader,
+  LoaderIcon,
   Select,
   Space,
   Text,

@@ -38,6 +38,16 @@ export const Loader = ({ show, transparent, title }) => {
   );
 };
 
+export const LoaderIcon = () => {
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <Container>
+      <Image size="large" color={theme.palette.primary.main} />
+    </Container>
+  );
+};
+
 Loader.defaultProps = {
   show: true,
   title: 'Aguarde...',
