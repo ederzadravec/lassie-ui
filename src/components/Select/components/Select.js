@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { TextInput, Loader, Header } from '../../';
 import { SelectItem } from './SelectItem';
 
-const semAcentos = text => (text ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text);
+const semAcentos = (text) => (text ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text);
 
 const SafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -46,10 +46,13 @@ export class Select extends React.PureComponent {
   };
 
   componentDidMount() {
-    const { staticData, variant, dinamicOnlyFirst } = this.props;
+    const { staticData, loadedData, variant } = this.props;
 
     if (variant === 'dinamic') {
-      return this.handleSearchData();
+      return this.setState({
+        staticData: loadedData,
+        data: this.formatData(loadedData),
+      });
     }
 
     return this.setState({
@@ -58,7 +61,7 @@ export class Select extends React.PureComponent {
     });
   }
 
-  handleSelectItem = item => {
+  handleSelectItem = (item) => {
     const { onChange, onClose } = this.props;
 
     onChange(item);
@@ -66,27 +69,12 @@ export class Select extends React.PureComponent {
     return onClose();
   };
 
-  handleSearchData = async (text = '') => {
-    const { onSearchData } = this.props;
-
-    this.setState({ isLoading: true }, async () => {
-      const result = await onSearchData(text);
-
-      this.setState({
-        data: this.formatData(result),
-        staticData: result,
-        isLoading: false,
-      });
-    });
-  };
-
-  handleFilterData = text => {
+  handleFilterData = (text) => {
     const { format } = this.props;
     const { staticData } = this.state;
 
     const filterData = (data, filter) => {
-      return (data || []).filter(item => {
-        console.log({ item, format });
+      return (data || []).filter((item) => {
         const name = semAcentos(item[format.name]);
         return name.match(new RegExp(`${filter}`, 'i'));
       });
@@ -95,7 +83,7 @@ export class Select extends React.PureComponent {
     this.setState({ data: filterData(this.formatData(staticData), semAcentos(text)) });
   };
 
-  formatData = result => {
+  formatData = (result) => {
     const { format, path } = this.props;
 
     const data = R.cond([
@@ -107,13 +95,13 @@ export class Select extends React.PureComponent {
 
     if (R.isEmpty(format)) return data;
 
-    return data.map(item => {
+    return data.map((item) => {
       return { ...item, id: item[format.id].toString(), name: item[format.name] };
     });
   };
 
   render() {
-    const { debounce, format, variant, dinamicOnlyFirst, onClose } = this.props;
+    const { debounce, format, variant, dinamicOnlyFirst, onClose, handleSearchData } = this.props;
     const { data, isLoading } = this.state;
 
     return (
@@ -127,9 +115,7 @@ export class Select extends React.PureComponent {
             placeholder="Digite para filtrar"
             onChangeText={debounceFunc(
               debounce,
-              variant === 'static' || dinamicOnlyFirst
-                ? this.handleFilterData
-                : this.handleSearchData
+              variant === 'static' || dinamicOnlyFirst ? this.handleFilterData : handleSearchData
             )}
           />
         </Header>

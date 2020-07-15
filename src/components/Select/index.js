@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { BaseInput, Text } from '../';
+import { BaseInput, Text, Loader } from '../';
 import { Select as SelectComponent } from './components';
 
 const TouchableOpacity = styled.TouchableOpacity`
@@ -45,11 +45,42 @@ const Value = styled.Text`
 
 const ModalSelect = styled.Modal``;
 
-export const Select = ({ error, value, format, label, disabled, data, ...props }) => {
+export const Select = ({ error, value, format, label, disabled, data, onSearchData, ...props }) => {
+  const [{ init, loadedData, isLoading }, setState] = React.useState({
+    init: false,
+    isLoading: false,
+    loadedData: [],
+  });
   const [showModal, setModal] = React.useState(false);
 
+  const handleSearchData = async (text = '') => {
+    setState((prev) => ({ ...prev, isLoading: true }));
+
+    const result = await onSearchData(text);
+
+    setState({
+      loadedData: result,
+      isLoading: false,
+      init: true,
+    });
+  };
+
+  React.useEffect(() => {
+    if (!disabled && !init && props.variant === 'dinamic') {
+      handleSearchData();
+    }
+  }, []);
+
   const getValue = () => {
-    return value ? value[format.name] : false;
+    const label = value
+      ? loadedData.find(
+          (item) => item[format.id] === value[format.id] || item[format.name] === value[format.name]
+        )
+      : null;
+
+    if (value && !value[format.id] && label) props.onChange(label);
+
+    return label ? label[format.name] : false;
   };
 
   const labelValue = getValue();
@@ -71,13 +102,17 @@ export const Select = ({ error, value, format, label, disabled, data, ...props }
         </TouchableOpacity>
       </BaseInput>
 
+      <Loader show={isLoading} />
+
       {showModal && (
         <ModalSelect visible={showModal}>
           <SelectComponent
             onClose={() => setModal(false)}
             format={format}
+            handleSearchData={handleSearchData}
             {...props}
             staticData={data}
+            loadedData={loadedData}
           />
         </ModalSelect>
       )}
