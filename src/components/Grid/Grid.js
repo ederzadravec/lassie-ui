@@ -1,6 +1,6 @@
-import React from "react";
-import { PixelRatio, Dimensions } from "react-native";
-import styled from "styled-components";
+import React from 'react';
+import { PixelRatio, Dimensions } from 'react-native';
+import styled from 'styled-components';
 
 const Row = styled.View`
   flex-direction: row;
@@ -12,12 +12,12 @@ const ColComponent = styled.View`
 `;
 
 const Col = ({ children, ...props }) => {
-  const size = react.useMemo(() => {
-    const { width } = Dimensions.get("window");
+  const size = React.useMemo(() => {
+    const { width } = Dimensions.get('window');
     const realWidth = PixelRatio.roundToNearestPixel(width);
 
-    if (realWidth <= 480) return "phone";
-    return "tablet";
+    if (realWidth <= 480) return 'phone';
+    return 'tablet';
   }, [props]);
 
   return (
@@ -33,5 +33,5 @@ export const Grid = ({ container, ...props }) =>
 Col.defaultProps = {
   phone: 12,
   tablet: 12,
-  size: 12
+  size: 12,
 };
