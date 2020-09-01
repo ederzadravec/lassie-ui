@@ -8,10 +8,10 @@ export const useRequest = (getData = () => {}, autoFetch = true, update = []) =>
     if (autoFetch) fetchData();
   }, update);
 
-  const fetchData = async (data) => {
+  const fetchData = async (...props) => {
     setLoading(true);
 
-    const response = await getData(data).catch((err) => {
+    const response = await getData(...props).catch((err) => {
       console.log('request error', err);
       return err.response;
     });
