@@ -36,7 +36,7 @@ const Container = styled.TouchableOpacity`
 `;
 
 const Label = styled.Text`
-  color: ${({ theme }) => theme.palette.colors.white};
+  color: ${({ theme, color }) => theme.palette[color].text};
   font-size: 14;
   font-weight: bold;
 
@@ -54,7 +54,7 @@ const Label = styled.Text`
 
 const ButtonIcon = styled(RNIcon)`
   font-size: 30;
-  color: ${({ theme }) => theme.palette.colors.white};
+  color: ${({ theme, color }) => theme.palette[color].text};
 
   ${({ margin, theme }) => `margin-${margin}: ${theme.spacing.unit}`};
 
@@ -104,7 +104,7 @@ Button.defaultProps = {
 
 Button.proptypes = {
   variant: PropTypes.oneOf(['default', 'outline', 'transparent', 'rounded']),
-  color: PropTypes.oneOf(['primary', 'error', 'alert', 'success']),
+  color: PropTypes.oneOf(['primary', 'error', 'alert', 'success', 'white', 'secondary']),
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
   iconBefore: PropTypes.string,

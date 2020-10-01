@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { getTheme } from '../../helpers';
 
-export const Theme = ({ children, theme }) => {
+export const Provider = ({ children, theme }) => {
   return (
     <ThemeProvider theme={getTheme(theme)}>
       {children}
@@ -11,6 +11,6 @@ export const Theme = ({ children, theme }) => {
   );
 };
 
-Theme.defaultProps = {
+Provider.defaultProps = {
   theme: {},
 };

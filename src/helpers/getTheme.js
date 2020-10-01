@@ -345,6 +345,12 @@ const defaultPalette = (theme = {}) => {
       text: getContrastText(colors.teal[700], text),
       ...theme.palette?.primary,
     },
+    white: {
+      light: '#fff',
+      main: '#fff',
+      dark: '#fff',
+      text: '#000',
+    },
     error: {
       light: colors.red[500],
       main: colors.red[700],

@@ -15,9 +15,9 @@ export {
   Icon,
   Loader,
   LoaderIcon,
+  Provider,
   Select,
   Space,
   Text,
   TextInput,
-  Theme,
 } from './components';
