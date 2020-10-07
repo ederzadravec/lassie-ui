@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Row } from './Row';
 
-const Container = styled.ScrollView`
+const Container = styled.View`
   flex: 1;
 `;
 

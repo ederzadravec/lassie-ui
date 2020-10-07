@@ -14,8 +14,13 @@ const Label = styled.Text`
   width: 100%;
   text-align: ${({ align }) => align};
 
-  color: ${({ hasError, theme }) =>
-    hasError ? theme.palette.error.main : theme.typography.text.color};
+  color: ${({ hasError, theme, darkTheme }) => {
+    if (hasError) return theme.palette.error.main;
+
+    if (darkTheme) return theme.palette.text.light
+
+    return theme.palette.text.dark
+  }};
 
   ${({ float, theme }) =>
     float
@@ -32,8 +37,14 @@ const Input = styled(TextInputMask)`
   height: ${({ theme }) => theme.spacing.unit * 4};
   margin-top: ${({ theme }) => theme.spacing.unit * 2};
   margin-top: auto;
-  color: ${({ theme, editable }) =>
-    editable ? theme.typography.text.color : theme.palette.disabled.main};
+  color: ${({ editable, theme, darkTheme }) => {
+    if (!editable) return theme.palette.disabled.main;
+
+    if (darkTheme) return theme.palette.text.light
+
+    return theme.palette.text.dark
+  }};
+
   font-size: 14;
   z-index: 2;
   border-bottom-width: 1;
@@ -43,7 +54,7 @@ const Input = styled(TextInputMask)`
   text-align: ${({ align }) => align};
 `;
 
-const createDebounce = (debounce) => debounceFunc(debounce, (exec) => exec());
+const createDebounce = debounce => debounceFunc(debounce, exec => exec());
 
 export const TextInput = ({
   name,
@@ -61,6 +72,7 @@ export const TextInput = ({
   align,
   mask,
   disabled,
+  darkTheme,
   ...props
 }) => {
   let inputRef = null;
@@ -108,13 +120,13 @@ export const TextInput = ({
 
   return (
     <BaseInput style={style} error={error}>
-      <Label as={Text} align={align} float={floatingLabel} hasError={!!error}>
+      <Label as={Text} align={align} float={floatingLabel} hasError={!!error} darkTheme={darkTheme}>
         {label}
       </Label>
 
       <Input
         autoCapitalize="none"
-        refInput={(ref) => (inputRef = ref)}
+        refInput={ref => (inputRef = ref)}
         {...props}
         editable={!disabled}
         mask={mask}
@@ -127,6 +139,7 @@ export const TextInput = ({
         onEndEditing={handleOnEndEditing}
         placeholder={placeholder}
         hasError={!!error}
+        darkTheme={darkTheme}
       />
     </BaseInput>
   );
@@ -142,6 +155,7 @@ TextInput.defaultProps = {
   align: 'left',
   mask: null,
   disabled: false,
+  darkTheme: false,
 };
 
 TextInput.proptypes = {
@@ -155,6 +169,7 @@ TextInput.proptypes = {
   onFocus: PropTypes.func,
   floatLabel: PropTypes.bool,
   disabled: PropTypes.bool,
+  darkTheme: PropTypes.bool,
   debounce: PropTypes.number,
   align: PropTypes.oneOf(['left', 'center', 'right']),
   mask: PropTypes.string,
