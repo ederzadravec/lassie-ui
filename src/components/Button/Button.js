@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import RNIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -66,6 +66,10 @@ const ButtonIcon = styled(RNIcon)`
   }}
 `;
 
+const Loader = styled.ActivityIndicator`
+  align-self: center;
+`;
+
 export const Button = ({
   children,
   variant,
@@ -74,9 +78,20 @@ export const Button = ({
   onPress,
   iconBefore,
   iconAfter,
+  loading,
   ...props
 }) => {
+  const theme = React.useContext(ThemeContext);
   const color = disabled ? 'disabled' : colorProp;
+
+  if (loading) {
+    const colorType = variant === 'outline' || variant === 'transparent' ? 'main' : 'text';
+    return (
+      <Container {...props} variant={variant} color={color} disabled={disabled} onPress={() => {}}>
+        <Loader size="large" color={theme.palette.primary[colorType]} />
+      </Container>
+    );
+  }
 
   return (
     <Container {...props} variant={variant} color={color} disabled={disabled} onPress={onPress}>
@@ -88,9 +103,7 @@ export const Button = ({
         {children}
       </Label>
 
-      {iconAfter && (
-        <ButtonIcon name={iconAfter} variant={variant} color={color} margin="left" />
-      )}
+      {iconAfter && <ButtonIcon name={iconAfter} variant={variant} color={color} margin="left" />}
     </Container>
   );
 };
@@ -100,6 +113,7 @@ Button.defaultProps = {
   variant: 'default',
   color: 'primary',
   disabled: false,
+  loading: false,
 };
 
 Button.proptypes = {
@@ -107,6 +121,7 @@ Button.proptypes = {
   color: PropTypes.oneOf(['primary', 'error', 'alert', 'success', 'white', 'secondary']),
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
+  loading: PropTypes.bool,
   iconBefore: PropTypes.string,
   iconAfter: PropTypes.string,
 };
