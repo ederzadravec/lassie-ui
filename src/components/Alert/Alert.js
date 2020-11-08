@@ -25,7 +25,10 @@ const AlertComponent = ({ elevation }) => {
 
   open = ({ title, message, actions, color }) => {
     setAlerts(prev => {
-      const newAlerts = [...prev.alerts, { title, message, color, actions: actions || defaultAction }];
+      const newAlerts = [
+        ...prev.alerts,
+        { title, message, color, actions: actions || defaultAction },
+      ];
       return { current: newAlerts.length - 1, alerts: newAlerts };
     });
   };
@@ -51,8 +54,10 @@ const AlertComponent = ({ elevation }) => {
       <SafeAreaView>
         <Content elevation={elevation} style={{ shadowOffset: { height: 0.5 * elevation } }}>
           {alert?.title && (
-            <TitleContent >
-              <Title color={alert.color} as={Text}>{alert.title}</Title>
+            <TitleContent>
+              <Title color={alert.color} as={Text}>
+                {alert.title}
+              </Title>
             </TitleContent>
           )}
 
@@ -61,6 +66,7 @@ const AlertComponent = ({ elevation }) => {
           <Actions>
             {(alert?.actions || []).map(({ label, action, color }) => (
               <Action
+                key={label}
                 color={color}
                 size={12 / alert?.actions.length}
                 onPress={handleAction(action)}>

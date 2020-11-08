@@ -54,7 +54,7 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
   const [showModal, setModal] = React.useState(false);
 
   const handleSearchData = async (text = '') => {
-    setState((prev) => ({ ...prev, isLoading: true }));
+    setState(prev => ({ ...prev, isLoading: true }));
 
     const result = await onSearchData(text);
 
@@ -67,14 +67,20 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
 
   React.useEffect(() => {
     if (!disabled && !init && props.variant === 'dinamic') {
-      handleSearchData();
+      return handleSearchData();
     }
+
+    setState({
+      loadedData: data,
+      isLoading: false,
+      init: true,
+    });
   }, []);
 
   const getValue = () => {
     const label = value
       ? loadedData.find(
-          (item) => item[format.id] === value[format.id] || item[format.name] === value[format.name]
+          item => item[format.id] === value[format.id] || item[format.name] === value[format.name]
         )
       : null;
 
