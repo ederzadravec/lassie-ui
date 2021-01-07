@@ -5,21 +5,31 @@ import { View, FlatList } from 'react-native';
 import { debounce as debounceFunc } from 'throttle-debounce';
 import styled from 'styled-components';
 
-import { TextInput, Loader, Header } from '../../';
+import { Loader, Header } from '../../';
 import { SelectItem } from './SelectItem';
 
-const semAcentos = (text) => (text ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text);
+const semAcentos = text => (text ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text);
 
 const SafeAreaView = styled.SafeAreaView`
   flex: 1;
 `;
 
 const Container = styled.View`
-  position: relative;
-  flex-direction: row;
-  padding-horizontal: ${({ theme }) => theme.spacing.unit * 3};
-  padding-vertical: ${({ theme }) => theme.spacing.unit * 1.5};
-  background: ${({ theme }) => theme.palette.primary.main};
+  flex: 1;
+  justify-content: flex-end;
+  padding: 12px;
+  padding-bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+`;
+
+const Content = styled.View`
+  margin-top: auto;
+  background: #fff;
+  flex-direction: column;
+  height: 90%;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
 `;
 
 const SearchInput = styled.TextInput`
@@ -61,7 +71,7 @@ export class Select extends React.PureComponent {
     });
   }
 
-  handleSelectItem = (item) => {
+  handleSelectItem = item => {
     const { onChange, onClose } = this.props;
 
     onChange(item);
@@ -69,12 +79,12 @@ export class Select extends React.PureComponent {
     return onClose();
   };
 
-  handleFilterData = (text) => {
+  handleFilterData = text => {
     const { format } = this.props;
     const { staticData } = this.state;
 
     const filterData = (data, filter) => {
-      return (data || []).filter((item) => {
+      return (data || []).filter(item => {
         const name = semAcentos(item[format.name]);
         return name.match(new RegExp(`${filter}`, 'i'));
       });
@@ -83,7 +93,7 @@ export class Select extends React.PureComponent {
     this.setState({ data: filterData(this.formatData(staticData), semAcentos(text)) });
   };
 
-  formatData = (result) => {
+  formatData = result => {
     const { format, path } = this.props;
 
     const data = R.cond([
@@ -95,7 +105,7 @@ export class Select extends React.PureComponent {
 
     if (R.isEmpty(format)) return data;
 
-    return data.map((item) => {
+    return data.map(item => {
       return { ...item, id: item[format.id].toString(), name: item[format.name] };
     });
   };
@@ -105,44 +115,50 @@ export class Select extends React.PureComponent {
     const { data, isLoading } = this.state;
 
     return (
-      <SafeAreaView>
-        <Header
-          left={[{ icon: 'chevron-left', onPress: onClose }]}
-          right={[{ icon: 'close', onPress: () => this.handleSelectItem({}) }]}>
-          <SearchInput
-            placeholderTextColor={'#FFF'}
-            autoCorrect={false}
-            placeholder="Digite para filtrar"
-            onChangeText={debounceFunc(
-              debounce,
-              variant === 'static' || dinamicOnlyFirst ? this.handleFilterData : handleSearchData
-            )}
-          />
-        </Header>
+      <Container>
+        <Content>
+          <SafeAreaView>
+            <Header
+              left={[{ icon: 'broom', onPress: () => this.handleSelectItem({}) }]}
+              right={[{ icon: 'close', onPress: onClose }]}>
+              <SearchInput
+                placeholderTextColor={'#FFF'}
+                autoCorrect={false}
+                placeholder="Buscar ..."
+                onChangeText={debounceFunc(
+                  debounce,
+                  variant === 'static' || dinamicOnlyFirst
+                    ? this.handleFilterData
+                    : handleSearchData
+                )}
+              />
+            </Header>
 
-        <Loader show={isLoading} />
+            <Loader show={isLoading} />
 
-        {!isLoading && (
-          <List
-            data={data}
-            renderItem={({ item }) => (
-              <SelectItem
-                key={item.id.toString()}
-                item={item}
-                tags={R.pathOr([], ['tags'], format)}
-                onPress={this.handleSelectItem}
+            {!isLoading && (
+              <List
+                data={data}
+                renderItem={({ item }) => (
+                  <SelectItem
+                    key={item.id.toString()}
+                    item={item}
+                    tags={R.pathOr([], ['tags'], format)}
+                    onPress={this.handleSelectItem}
+                  />
+                )}
               />
             )}
-          />
-        )}
-      </SafeAreaView>
+          </SafeAreaView>
+        </Content>
+      </Container>
     );
   }
 }
 
 Select.defaultProps = {
   onSearchData: () => {},
-  debounce: 1000,
+  debounce: 500,
   staticData: null,
   path: '',
   format: { id: 'id', name: 'name' },

@@ -111,7 +111,7 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
       <Loader show={isLoading} />
 
       {showModal && (
-        <ModalSelect visible={showModal}>
+        <ModalSelect animationType="slide" transparent visible={showModal}>
           <SelectComponent
             onClose={() => setModal(false)}
             format={format}

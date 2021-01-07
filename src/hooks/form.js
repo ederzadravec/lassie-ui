@@ -1,24 +1,17 @@
 import React from 'react';
-import R from 'ramda';
+import * as R from 'ramda';
+
+import { useState } from './';
 
 export const useForm = (
   { initialValues, validations } = { initialValues: {}, validations: {} }
 ) => {
-  const [{ values, errors, touched, triedSave }, useSetState] = React.useState({
+  const [{ values, errors, touched, triedSave }, setState] = useState({
     values: {},
     errors: {},
     touched: [],
     triedSave: false,
   });
-
-  const setState = (data) =>
-    useSetState((prev) => ({
-      ...prev,
-      ...data,
-      values: { ...prev.values, ...data.values },
-      errors: data.errors || {},
-      touched: [...prev.touched, ...(data.touched || [])],
-    }));
 
   React.useEffect(() => {
     const data = initialValues || {};
@@ -41,7 +34,7 @@ export const useForm = (
   };
 
   const onChange = React.useCallback(
-    (name, remove = []) => (value) => {
+    (name, remove = []) => value => {
       const data = { [name]: value };
 
       setValues(data, remove);
@@ -61,7 +54,7 @@ export const useForm = (
     });
   };
 
-  const setError = (errors) => {
+  const setError = errors => {
     const newTouched = [...touched, ...Object.keys(errors)];
     setState({
       errors,
@@ -69,21 +62,33 @@ export const useForm = (
     });
   };
 
-  const getError = (name) => {
+  const getError = name => {
     return errors[name] && (touched.indexOf(name) !== -1 || triedSave) ? errors[name] : null;
   };
 
   const getValue = (name, data = values) => {
-    return data[name];
+    return data[name] === undefined ? null : data[name];
   };
 
-  const trySave = (callback = () => {}) => (e) => {
+  const trySave = (callback = () => {}) => e => {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (!R.isEmpty(errors) && !R.isNil(errors)) {
       setState({ triedSave: true });
       return false;
     }
 
     callback(e);
+  };
+
+  const clear = (data = {}) => {
+    setState(() => ({
+      values: data,
+      errors: validateData(data),
+      touched: [],
+      triedSave: false,
+    }));
   };
 
   const form = {
@@ -96,6 +101,7 @@ export const useForm = (
     touched,
     trySave,
     setValues,
+    clear,
   };
 
   return [form, onChange];
