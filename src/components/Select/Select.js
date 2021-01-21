@@ -1,49 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { BaseInput, Text, Loader } from '../';
-import { Select as SelectComponent } from './components';
+import { BaseInput } from '../BaseInput';
+import { Loader } from '../Loader';
+import { List } from './List';
 
-const TouchableOpacity = styled.TouchableOpacity`
-  position: relative;
-  flex: 1;
-`;
-
-const Label = styled.Text`
-  position: absolute;
-  font-size: 12;
-
-  color: ${({ hasError, theme }) =>
-    hasError ? theme.palette.error.main : theme.typography.text.color};
-
-  ${({ float, theme }) =>
-    float
-      ? ''
-      : `
-    font-size: 14;
-    z-index: 2;
-    bottom: ${theme.spacing.unit};
-
-  `};
-`;
-
-const Input = styled.View`
-  height: ${({ theme }) => theme.spacing.unit * 4};
-  margin-top: ${({ theme }) => theme.spacing.unit * 2};
-  z-index: 1;
-  border-bottom-width: 1;
-  border-bottom-color: ${({ hasError, theme }) =>
-    hasError ? theme.palette.error.main : theme.palette.colors.grey[400]};
-
-  justify-content: center;
-`;
-
-const Value = styled.Text`
-  font-size: 14;
-`;
-
-const ModalSelect = styled.Modal``;
+import * as S from './Select.styled';
 
 export const Select = ({ error, value, format, label, disabled, data, onSearchData, ...props }) => {
   const [{ init, loadedData, isLoading }, setState] = React.useState({
@@ -78,6 +40,8 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
   }, []);
 
   const getValue = () => {
+    if (value && value[format.name]) return value[format.name];
+
     const label = value
       ? loadedData.find(
           item => item[format.id] === value[format.id] || item[format.name] === value[format.name]
@@ -94,25 +58,23 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
   return (
     <>
       <BaseInput error={error}>
-        <TouchableOpacity
+        <S.TouchableOpacity
           activeOpacity={1}
           onPress={() => setModal(!showModal)}
           disabled={disabled}>
-          <Label as={Text} float={!!labelValue}>
-            {label}
-          </Label>
+          <S.Label float={!!labelValue}>{label}</S.Label>
 
-          <Input hasError={!!error}>
-            <Value as={Text}>{labelValue}</Value>
-          </Input>
-        </TouchableOpacity>
+          <S.Input hasError={!!error}>
+            <S.Value>{labelValue}</S.Value>
+          </S.Input>
+        </S.TouchableOpacity>
       </BaseInput>
 
       <Loader show={isLoading} />
 
       {showModal && (
-        <ModalSelect animationType="slide" transparent visible={showModal}>
-          <SelectComponent
+        <S.ModalSelect animationType="slide" transparent visible={showModal}>
+          <List
             onClose={() => setModal(false)}
             format={format}
             handleSearchData={handleSearchData}
@@ -120,7 +82,7 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
             staticData={data}
             loadedData={loadedData}
           />
-        </ModalSelect>
+        </S.ModalSelect>
       )}
     </>
   );

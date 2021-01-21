@@ -4,35 +4,35 @@ import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import PropTypes from 'prop-types';
 
-import { Text } from '../';
+import { Text } from '../Text';
 
 const Container = styled.View`
-  padding-vertical: ${({ theme }) => theme.spacing.unit * 1.5};
+  padding-vertical: ${({ theme }) => theme.spacing.unit * 1.5}px;
   background-color: ${({ theme }) => theme.components.header.background};
   flex-direction: row;
 `;
 
 const Title = styled.Text`
   flex: 1;
-  line-height: 40;
-  margin-horizontal: ${({ theme }) => theme.spacing.unit * 1};
+  line-height: 40px;
+  margin-horizontal: ${({ theme }) => theme.spacing.unit * 1}px;
   color: ${({ theme }) => theme.components.header.text};
-  font-size: ${({ theme }) => theme.components.header.fontSize};
+  font-size: ${({ theme }) => theme.components.header.fontSize}px;
   text-align: ${({ theme }) => theme.components.header.textAlign};
   font-weight: ${({ theme }) => theme.components.header.fontWeight};
 `;
 
 const Actions = styled.View`
   justify-content: center;
-  min-width: 56;
+  min-width: 56px;
   flex-direction: row;
 `;
 
 const Action = styled(Icon)`
-  height: 40;
-  width: 56;
-  line-height: 40;
-  font-size: 28;
+  height: 40px;
+  width: 56px;
+  line-height: 40px;
+  font-size: 28px;
   text-align: center;
   color: ${({ theme }) => theme.components.header.text};
 `;
@@ -42,7 +42,7 @@ export const Header = ({ children, left, right, ...props }) => {
     <Container {...props}>
       <Actions>
         {left.map(({ component: Component, icon: name, ...icon }) =>
-          Component ? <Component /> : <Action name={name} {...icon} />
+          Component ? <Component key={name} /> : <Action key={name} name={name} {...icon} />
         )}
       </Actions>
 
@@ -50,7 +50,7 @@ export const Header = ({ children, left, right, ...props }) => {
 
       <Actions>
         {right.map(({ component: Component, icon: name, ...icon }) =>
-          Component ? <Component /> : <Action name={name} {...icon} />
+          Component ? <Component key={name} /> : <Action key={name} name={name} {...icon} />
         )}
       </Actions>
     </Container>

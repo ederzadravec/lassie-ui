@@ -10,7 +10,7 @@ export { Header } from './Header';
 export { Icon } from './Icon';
 export { Loader, LoaderIcon } from './Loader';
 export { Provider } from './Provider/Provider';
-export { Select } from './Select';
+export { Select } from './Select/Select';
 export { Space } from './Space';
 export { Text } from './Text';
 export { TextInput } from './TextInput';
