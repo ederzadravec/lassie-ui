@@ -67,7 +67,8 @@ export const List = ({
     if (R.isEmpty(format)) return data;
 
     return data.map(item => {
-      return { ...item, id: item[format.id].toString(), name: item[format.name] };
+      const values = R.path(['keys'], item) ? R.pick(item.keys(), item) : item;
+      return { ...values, id: item[format.id].toString(), name: item[format.name] };
     });
   };
 
