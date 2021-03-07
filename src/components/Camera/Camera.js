@@ -4,7 +4,7 @@ import * as S from './Camera.styled';
 import { TakePhoto } from './TakePhoto';
 import { ConfirmPhoto } from './ConfirmPhoto';
 
-const Camera = ({ title, mask, onChange, sideCam, onClose, visible }) => {
+const Camera = ({ title, mask, onChange, sideCam, onClose, visible, photoConfig }) => {
   const [showCamera, setCamera] = React.useState(true);
   const [showConfirmation, setConfirmation] = React.useState(false);
   const [data, setData] = React.useState();
@@ -46,6 +46,7 @@ const Camera = ({ title, mask, onChange, sideCam, onClose, visible }) => {
             onTake={handleOnTake}
             sideCam={sideCam}
             onClose={handleOnClose}
+            config={photoConfig}
           />
         )}
 
@@ -68,6 +69,7 @@ export default Camera;
 Camera.defaultProps = {
   onChange: () => {},
   onClose: () => {},
+  photoConfig: {},
 };
 
 export const CameraHOC = ({ children, ...props }) => {

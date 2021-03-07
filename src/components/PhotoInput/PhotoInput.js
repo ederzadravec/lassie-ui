@@ -16,6 +16,7 @@ const PhotoInput = ({
   align,
   placeholder,
   floatLabel,
+  photoConfig,
 }) => {
   const handleOnChange = data => {
     onChange(data);
@@ -42,7 +43,7 @@ const PhotoInput = ({
           </S.Input>
         </S.InputContainer>
 
-        <CameraHOC title={label} mask={mask} sideCam={sideCam} onChange={handleOnChange}>
+        <CameraHOC title={label} mask={mask} sideCam={sideCam} onChange={handleOnChange} photoConfig={photoConfig}>
           {({ openCamera }) => (
             <S.IconContent onPress={openCamera}>
               <S.Icon name="camera-outline" />
@@ -60,4 +61,5 @@ PhotoInput.defaultProps = {
   onChange: () => {},
   labelSuccess: 'Imagem anexada',
   align: 'left',
+  photoConfig: {},
 };

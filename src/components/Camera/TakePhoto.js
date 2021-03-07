@@ -2,20 +2,17 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import { Header } from '../Header';
-import {
-  CameraComponent,
-  Content,
-  Footer,
-  CameraButton,
-} from './Camera.styled';
+import { CameraComponent, Content, Footer, CameraButton } from './Camera.styled';
 
-export const TakePhoto = ({ sideCam, title, mask, onClose, onTake }) => {
+export const TakePhoto = ({ sideCam, title, mask, onClose, onTake, config }) => {
   const handleOnTake = camera => async () => {
     const options = {
       quality: 0.5,
+      width: 1024,
       base64: true,
       fixOrientation: true,
       mirrorImage: sideCam === 'front' ? true : false,
+      ...config,
     };
     const data = await camera.takePictureAsync(options);
 
@@ -53,4 +50,5 @@ TakePhoto.defaultProps = {
   sideCam: 'back',
   onTake: () => {},
   onClose: () => {},
+  config: {},
 };
