@@ -1,19 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import * as hooks from '../../hooks';
 import { BaseInput } from '../BaseInput';
 import { Loader } from '../Loader';
 import { List } from './List';
-
 import * as S from './Select.styled';
 
-export const Select = ({ error, value, format, label, disabled, data, onSearchData, ...props }) => {
-  const [{ init, loadedData, isLoading }, setState] = React.useState({
+export const Select = ({
+  error,
+  value,
+  format,
+  label,
+  disabled,
+  data,
+  onSearchData,
+  className,
+  ...props
+}) => {
+  const [{ init, loadedData, isLoading }, setState] = hooks.useState({
     init: false,
     isLoading: false,
     loadedData: [],
   });
-  const [showModal, setModal] = React.useState(false);
+  const [showModal, setModal] = hooks.useState(false);
 
   const handleSearchData = async (text = '') => {
     setState(prev => ({ ...prev, isLoading: true }));
@@ -57,7 +67,7 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
 
   return (
     <>
-      <BaseInput error={error}>
+      <BaseInput error={error} className={className}>
         <S.TouchableOpacity
           activeOpacity={1}
           onPress={() => setModal(!showModal)}
@@ -88,6 +98,73 @@ export const Select = ({ error, value, format, label, disabled, data, onSearchDa
   );
 };
 
+export const SelectModal = ({
+  data,
+  onChange,
+  onSearchData,
+  format,
+  disabled,
+  variant,
+  children,
+}) => {
+  const [{ init, loadedData, isLoading }, setState] = hooks.useState({
+    init: false,
+    isLoading: false,
+    loadedData: [],
+  });
+  const [showModal, setModal] = hooks.useState(false);
+
+  const handleSearchData = async (text = '') => {
+    setState(prev => ({ ...prev, isLoading: true }));
+
+    const result = await onSearchData(text);
+
+    setState({
+      loadedData: result,
+      isLoading: false,
+      init: true,
+    });
+  };
+
+  React.useEffect(() => {
+    if (!disabled && !init && variant === 'dinamic') {
+      return handleSearchData();
+    }
+
+    setState({
+      loadedData: data,
+      isLoading: false,
+      init: true,
+    });
+  }, []);
+
+  return (
+    <>
+      {children && (
+        <S.TouchableOpacity
+          activeOpacity={1}
+          onPress={() => setModal(!showModal)}
+          disabled={disabled}>
+          {children}
+        </S.TouchableOpacity>
+      )}
+
+      <Loader show={isLoading} />
+
+      <S.ModalSelect animationType="slide" transparent visible={showModal}>
+        <List
+          onClose={() => setModal(false)}
+          format={format}
+          handleSearchData={handleSearchData}
+          onChange={onChange}
+          staticData={data}
+          loadedData={loadedData}
+        />
+      </S.ModalSelect>
+    </>
+  );
+};
+
 Select.defaultProps = {
   onChange: () => {},
   format: { id: 'id', name: 'name' },
@@ -98,6 +175,20 @@ Select.prototypes = {
   error: PropTypes.string,
   label: PropTypes.string.isRequired,
   value: PropTypes.object,
+  data: PropTypes.array,
+  variant: PropTypes.oneOf('static', 'dinamic'),
+  onChange: PropTypes.func.isRequired,
+  onSearchData: PropTypes.func,
+  dinamicOnlyFirst: PropTypes.bool,
+};
+
+SelectModal.defaultProps = {
+  onChange: () => {},
+  format: { id: 'id', name: 'name' },
+  variant: 'static',
+};
+
+SelectModal.prototypes = {
   data: PropTypes.array,
   variant: PropTypes.oneOf('static', 'dinamic'),
   onChange: PropTypes.func.isRequired,

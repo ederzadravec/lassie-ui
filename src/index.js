@@ -20,6 +20,7 @@ export {
   Provider,
   PhotoInput,
   Select,
+  SelectModal,
   Space,
   Text,
   TextInput,

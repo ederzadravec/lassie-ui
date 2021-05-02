@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../';
+import { Text } from '../Text';
 
 const Label = styled.Text`
   font-weight: bold;
-  margin-top: ${({ theme }) => theme.spacing.unit * 3};
-  margin-bottom: ${({ theme }) => theme.spacing.unit};
+  margin-top: ${({ theme }) => theme.spacing.unit * 3}px;
+  margin-bottom: ${({ theme }) => theme.spacing.unit}px;
 `;
 
 export const FormLabel = ({ label }) => {

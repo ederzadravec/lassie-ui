@@ -1,7 +1,7 @@
 import React from 'react';
 import R from 'ramda';
 
-import { Text } from '../';
+import { Text } from '../Text';
 import {
   Container,
   SafeAreaView,

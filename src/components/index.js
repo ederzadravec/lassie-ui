@@ -13,6 +13,7 @@ export { Loader, LoaderIcon } from './Loader';
 export { Provider } from './Provider/Provider';
 export { default as PhotoInput } from './PhotoInput/PhotoInput';
 export { Select } from './Select/Select';
+export { SelectModal } from './Select/Select';
 export { Space } from './Space';
 export { Text } from './Text';
 export { TextInput } from './TextInput';

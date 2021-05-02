@@ -5,11 +5,13 @@ import R from 'ramda';
 import { debounce as debounceFunc } from 'throttle-debounce';
 import TextInputMask from 'react-native-text-input-mask';
 
-import { BaseInput, Text, hooks } from '../../';
+import * as hooks from '../../hooks';
+import { BaseInput } from '../BaseInput';
+import { Text } from '../Text';
 
 const Label = styled.Text`
   position: absolute;
-  font-size: 12;
+  font-size: 12px;
   background: transparent;
   width: 100%;
   text-align: ${({ align }) => align};
@@ -17,37 +19,37 @@ const Label = styled.Text`
   color: ${({ hasError, theme, darkTheme }) => {
     if (hasError) return theme.palette.error.main;
 
-    if (darkTheme) return theme.palette.text.light
+    if (darkTheme) return theme.palette.text.light;
 
-    return theme.palette.text.dark
+    return theme.palette.text.dark;
   }};
 
   ${({ float, theme }) =>
     float
       ? ''
       : `
-    font-size: 14;
+    font-size: 14px;
     z-index: 1;
-    bottom: ${theme.spacing.unit * 3};
+    bottom: ${theme.spacing.unit * 3}px;
 
   `};
 `;
 
 const Input = styled(TextInputMask)`
-  height: ${({ theme }) => theme.spacing.unit * 4};
-  margin-top: ${({ theme }) => theme.spacing.unit * 2};
+  height: ${({ theme }) => theme.spacing.unit * 4}px;
+  margin-top: ${({ theme }) => theme.spacing.unit * 2}px;
   margin-top: auto;
   color: ${({ editable, theme, darkTheme }) => {
     if (!editable) return theme.palette.disabled.main;
 
-    if (darkTheme) return theme.palette.text.light
+    if (darkTheme) return theme.palette.text.light;
 
-    return theme.palette.text.dark
+    return theme.palette.text.dark;
   }};
 
-  font-size: 14;
+  font-size: 14px;
   z-index: 2;
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   border-bottom-color: ${({ hasError, theme }) =>
     hasError ? theme.palette.error.main : theme.palette.colors.grey[400]};
   padding: 0;

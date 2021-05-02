@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 const Container = styled.View`
-  padding-right: ${({ last, theme }) => (last ? 0 : theme.spacing.unit)};
+  padding-right: ${({ last, theme }) => (last ? 0 : theme.spacing.unit)}px;
   margin-left: ${({ offset }) => (100 / 12) * offset}%;
   width: ${({ size }) => (100 / 12) * size}%;
 
-  padding-vertical: 8;
+  padding: 8px 0;
 `;
 
 export const Column = ({ type, schema, props, size, offset, last, hide }) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from 'ramda';
 
-import { useState } from './';
+import { useState } from './state';
 
 export const useForm = (
   { initialValues, validations } = { initialValues: {}, validations: {} }

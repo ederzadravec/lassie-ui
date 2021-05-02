@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { Modal } from 'react-native';
 
-import { Text } from '../';
+import { Text } from '../Text';
 
 const Container = styled.View`
   justify-content: center;
@@ -13,13 +13,13 @@ const Container = styled.View`
 `;
 
 const Image = styled.ActivityIndicator`
-  margin-bottom: ${({ theme }) => theme.spacing.unit * 2};
+  margin-bottom: ${({ theme }) => theme.spacing.unit * 2}px;
 `;
 
 const Title = styled.Text`
   color: ${({ theme }) => theme.palette.primary.main};
   font-weight: bold;
-  font-size: 16;
+  font-size: 16px;
 `;
 
 export const Loader = ({ show, transparent, title }) => {

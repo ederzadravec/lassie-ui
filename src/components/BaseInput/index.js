@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 
 const Container = styled.View`
   position: relative;
-  min-height: ${({ theme }) => theme.spacing.unit * 8};
+  min-height: ${({ theme }) => theme.spacing.unit * 8}px;
   min-width: 100%;
-  padding-bottom: ${({ theme }) => theme.spacing.unit * 2};
+  padding-bottom: ${({ theme }) => theme.spacing.unit * 2}px;
 `;
 
 const Error = styled.Text`
   position: absolute;
   bottom: 0;
   color: ${({ theme }) => theme.palette.error.main};
-  font-size: 12;
+  font-size: 12px;
 `;
 
 export const BaseInput = ({ error, children, ...props }) => {

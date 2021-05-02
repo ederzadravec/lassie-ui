@@ -3,16 +3,16 @@ import styled, { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import RNIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { Text } from '../';
+import { Text } from '../Text';
 
 const Container = styled.TouchableOpacity`
-  height: ${({ theme }) => theme.spacing.unit * 7};
-  border-radius: ${({ theme }) => theme.components.button.borderRadius};
+  height: ${({ theme }) => theme.spacing.unit * 7}px;
+  border-radius: ${({ theme }) => theme.components.button.borderRadius}px;
   border-color: ${({ theme, color }) => theme.palette[color].main};
   background-color: ${({ theme, color }) => theme.palette[color].main};
   align-items: center;
   justify-content: center;
-  border-width: 1;
+  border-width: 1px;
 
   flex-direction: row;
 
@@ -25,19 +25,19 @@ const Container = styled.TouchableOpacity`
     if (variant === 'transparent')
       return `
           background-color: transparent;
-          border-width: 0;
+          border-width: 0px;
         `;
 
     if (variant === 'rounded')
       return `
-        border-radius: ${theme.spacing.unit * 7};
+        border-radius: ${theme.spacing.unit * 7}px;
       `;
   }}
 `;
 
 const Label = styled.Text`
   color: ${({ theme, color }) => theme.palette[color].text};
-  font-size: 14;
+  font-size: 14px;
   font-weight: bold;
 
   justify-content: center;
@@ -53,10 +53,10 @@ const Label = styled.Text`
 `;
 
 const ButtonIcon = styled(RNIcon)`
-  font-size: 30;
+  font-size: 30px;
   color: ${({ theme, color }) => theme.palette[color].text};
 
-  ${({ margin, theme }) => `margin-${margin}: ${theme.spacing.unit}`};
+  ${({ margin, theme }) => `margin-${margin}: ${theme.spacing.unit}px`};
 
   ${({ variant, color, theme }) => {
     if (variant === 'outline' || variant === 'transparent')

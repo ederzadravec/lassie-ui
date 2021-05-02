@@ -1,5 +1,6 @@
 import React from "react";
 import { type } from "ramda";
+
 export const useState = (initialState = {}) => {
   const [state, setUseState] = React.useState(initialState);
 

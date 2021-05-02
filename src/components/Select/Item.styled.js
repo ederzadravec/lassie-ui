@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.TouchableOpacity`
   margin-top: 16px;
   flex-direction: column;
-  padding-horizontal: 8px;
+  padding: 0 8px;
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.palette.colors.grey[300]};
   padding-bottom: 16px;

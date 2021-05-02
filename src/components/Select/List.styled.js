@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -28,12 +28,12 @@ export const SearchInput = styled.TextInput`
   height: 40px;
   width: 100%;
   font-size: 18px;
-  padding-horizontal: 8px;
+  padding: 0 8px;
   color: #fff;
 `;
 
 export const List = styled.FlatList`
   margin-top: 8px;
   flex: 1;
-  padding-horizontal: ${({ theme }) => theme.spacing.unit * 3}px;
+  padding: 0 ${({ theme }) => theme.spacing.unit * 3}px;
 `;

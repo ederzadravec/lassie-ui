@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Text } from '../Text';
 
 const Container = styled.View`
-  padding-vertical: ${({ theme }) => theme.spacing.unit * 1.5}px;
+  padding: ${({ theme }) => theme.spacing.unit * 1.5}px 0;
   background-color: ${({ theme }) => theme.components.header.background};
   flex-direction: row;
 `;
@@ -15,7 +15,7 @@ const Container = styled.View`
 const Title = styled.Text`
   flex: 1;
   line-height: 40px;
-  margin-horizontal: ${({ theme }) => theme.spacing.unit * 1}px;
+  margin: 0 ${({ theme }) => theme.spacing.unit * 1}px;
   color: ${({ theme }) => theme.components.header.text};
   font-size: ${({ theme }) => theme.components.header.fontSize}px;
   text-align: ${({ theme }) => theme.components.header.textAlign};

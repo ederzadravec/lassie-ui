@@ -1,7 +1,7 @@
 import React from 'react';
 import proptypes from 'prop-types';
 
-import { Text } from '../';
+import { Text } from '../Text';
 
 import * as S from './boxInput.styled';
 

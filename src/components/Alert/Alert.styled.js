@@ -10,36 +10,34 @@ export const Container = styled.Modal`
 export const SafeAreaView = styled.SafeAreaView`
   flex: 1;
   background: transparent;
-  padding-horizontal: ${({ theme }) => theme.spacing.unit * 3};
+  padding-horizontal: ${({ theme }) => theme.spacing.unit * 3}px;
   justify-content: center;
   align-items: center;
 `;
 
 export const Content = styled.View`
   background: ${({ theme }) => theme.palette.colors.white};
-  width: ${({ theme }) => width - theme.spacing.unit * 8};
-  border-radius: 10;
+  width: ${({ theme }) => width - theme.spacing.unit * 8}px;
+  border-radius: 10px;
 
   shadow-color: ${({ theme }) => theme.palette.colors.grey[900]};
   shadow-opacity: 1;
   shadow-radius: ${({ elevation }) => 0.8 * elevation};
 
   elevation: ${({ elevation }) => elevation};
+`;
 
-  `;
-
-  export const TitleContent = styled.View`
+export const TitleContent = styled.View`
   border-bottom-color: ${({ theme }) => theme.palette.colors.grey[300]};
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
 
-  border-top-right-radius: 10;
-  border-top-left-radius: 10;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   overflow: hidden;
-  `;
+`;
 
 export const Title = styled.Text`
-  padding-horizontal: ${({ theme }) => theme.spacing.unit * 3};
-  padding-vertical: ${({ theme }) => theme.spacing.unit * 2};
+  padding: ${({ theme }) => theme.spacing.unit * 2}px ${({ theme }) => theme.spacing.unit * 3}px;
 
   ${({ color, theme }) => (color ? `background: ${theme.palette[color].main}` : '')}
   ${({ color, theme }) => (color ? `color: ${theme.palette[color].text}` : '')};
@@ -49,8 +47,7 @@ export const Title = styled.Text`
 `;
 
 export const Message = styled.Text`
-  padding-horizontal: ${({ theme }) => theme.spacing.unit * 3};
-  padding-vertical: ${({ theme }) => theme.spacing.unit * 4};
+  padding: ${({ theme }) => theme.spacing.unit * 4}px ${({ theme }) => theme.spacing.unit * 3}px;
 
   text-align: center;
 `;
@@ -58,17 +55,17 @@ export const Message = styled.Text`
 export const Actions = styled.View`
   flex-direction: row;
   border-top-color: ${({ theme }) => theme.palette.colors.grey[300]};
-  border-top-width: 1;
+  border-top-width: 1px;
 
-  border-bottom-right-radius: 10;
-  border-bottom-left-radius: 10;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   overflow: hidden;
 `;
 
 export const Action = styled.TouchableOpacity`
   width: ${({ size }) => (100 / 12) * size}%;
 
-  padding-vertical: ${({ theme }) => theme.spacing.unit * 2};
+  padding: ${({ theme }) => theme.spacing.unit * 2}px 0;
 
   border-color: ${({ theme }) => theme.palette.colors.grey[300]};
   border-width: 1;
