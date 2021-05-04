@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import R from 'ramda';
 
 import * as hooks from '../../hooks';
 import { BaseInput } from '../BaseInput';
@@ -16,6 +17,7 @@ export const Select = ({
   data,
   onSearchData,
   className,
+  multiple,
   ...props
 }) => {
   const [{ init, loadedData, isLoading }, setState] = hooks.useState({
@@ -63,7 +65,29 @@ export const Select = ({
     return label ? label[format.name] : false;
   };
 
-  const labelValue = getValue();
+  const getValueMultiple = () => {
+    if (!R.is('array', value) && !value.length) return;
+
+    let needUpdate = false;
+    const realValue = value.map(item => {
+      if (item && item[format.name]) return item;
+
+      needUpdate = true;
+      return loadedData.find(
+        item => item[format.id] === value[format.id] || item[format.name] === value[format.name]
+      );
+    });
+
+    if (needUpdate) props.onChange(realValue);
+
+    const total = realValue.length;
+
+    if (!total) false;
+
+    return total === 1 ? `${total} item` : `${total} items`;
+  };
+
+  const labelValue = multiple ? getValueMultiple() : getValue();
 
   return (
     <>
@@ -89,8 +113,10 @@ export const Select = ({
             format={format}
             handleSearchData={handleSearchData}
             {...props}
+            value={value}
             staticData={data}
             loadedData={loadedData}
+            multiple={multiple}
           />
         </S.ModalSelect>
       )}
@@ -106,6 +132,8 @@ export const SelectModal = ({
   disabled,
   variant,
   children,
+  value,
+  multiple,
 }) => {
   const [{ init, loadedData, isLoading }, setState] = hooks.useState({
     init: false,
@@ -159,7 +187,9 @@ export const SelectModal = ({
           onChange={onChange}
           staticData={data}
           loadedData={loadedData}
-        />
+          value={value}
+          multiple={multiple}
+          />
       </S.ModalSelect>
     </>
   );
@@ -169,6 +199,7 @@ Select.defaultProps = {
   onChange: () => {},
   format: { id: 'id', name: 'name' },
   variant: 'static',
+  multiple: false,
 };
 
 Select.prototypes = {
@@ -180,12 +211,14 @@ Select.prototypes = {
   onChange: PropTypes.func.isRequired,
   onSearchData: PropTypes.func,
   dinamicOnlyFirst: PropTypes.bool,
+  multiple: PropTypes.bool,
 };
 
 SelectModal.defaultProps = {
   onChange: () => {},
   format: { id: 'id', name: 'name' },
   variant: 'static',
+  multiple: false,
 };
 
 SelectModal.prototypes = {
@@ -194,4 +227,5 @@ SelectModal.prototypes = {
   onChange: PropTypes.func.isRequired,
   onSearchData: PropTypes.func,
   dinamicOnlyFirst: PropTypes.bool,
+  multiple: PropTypes.bool,
 };

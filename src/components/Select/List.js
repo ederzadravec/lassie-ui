@@ -22,6 +22,8 @@ export const List = ({
   handleSearchData,
   dinamicOnlyFirst,
   debounce,
+  value,
+  multiple,
 }) => {
   const [state, setState] = useState({ data: [], staticData: [], isLoading: false });
 
@@ -40,9 +42,17 @@ export const List = ({
   }, []);
 
   const handleSelectItem = item => {
-    onChange(item);
+    if (!multiple) {
+      onChange(item);
 
-    return onClose();
+      return onClose();
+    }
+
+    const selected = getSelected(item);
+
+    const newValue = selected ? value.filter(x => x.id !== item.id) : [...(value || []), item];
+
+    onChange(newValue);
   };
 
   const handleFilterData = text => {
@@ -72,12 +82,20 @@ export const List = ({
     });
   };
 
+  const getSelected = item => {
+    if (!multiple) {
+      return item?.id === value[format.id];
+    }
+
+    return !!value?.find(x => item.id === x[format.id]);
+  };
+
   return (
     <S.Container>
       <S.Content>
         <S.SafeAreaView>
           <Header
-            left={[{ icon: 'broom', onPress: () => handleSelectItem({}) }]}
+            left={[{ icon: 'broom', onPress: () => onChange(multiple ? [] : {}) }]}
             right={[{ icon: 'close', onPress: onClose }]}>
             <S.SearchInput
               placeholderTextColor={'#FFF'}
@@ -97,6 +115,7 @@ export const List = ({
               data={state.data}
               renderItem={({ item }) => (
                 <Item
+                  selected={getSelected(item)}
                   key={item.id.toString()}
                   item={item}
                   tags={R.pathOr([], ['tags'], format)}
