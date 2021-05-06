@@ -84,7 +84,7 @@ export const List = ({
 
   const getSelected = item => {
     if (!multiple) {
-      return item?.id === value[format.id];
+      return value && item?.id === value[format.id];
     }
 
     return !!value?.find(x => item.id === x[format.id]);

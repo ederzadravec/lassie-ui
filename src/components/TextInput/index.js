@@ -36,9 +36,8 @@ const Label = styled.Text`
 `;
 
 const Input = styled(TextInputMask)`
-  height: ${({ theme }) => theme.spacing.unit * 4}px;
-  margin-top: ${({ theme }) => theme.spacing.unit * 2}px;
-  margin-top: auto;
+  height: ${({ theme, numbersOfLine }) => numbersOfLine * 18 + 14}px;
+  margin-top: 16px;
   color: ${({ editable, theme, darkTheme }) => {
     if (!editable) return theme.palette.disabled.main;
 
@@ -47,13 +46,15 @@ const Input = styled(TextInputMask)`
     return theme.palette.text.dark;
   }};
 
+  text-align-vertical: ${({ multiple }) => (multiple ? 'top' : 'center')};
+  line-height: 17px;
   font-size: 14px;
   z-index: 2;
   border-bottom-width: 1px;
   border-bottom-color: ${({ hasError, theme }) =>
     hasError ? theme.palette.error.main : theme.palette.colors.grey[400]};
-  padding: 0;
   text-align: ${({ align }) => align};
+  padding: 9px 0;
 `;
 
 const createDebounce = debounce => debounceFunc(debounce, exec => exec());
@@ -100,7 +101,7 @@ export const TextInput = ({
   }, [value]);
 
   const hasValue = !R.isNil(value) && !R.isEmpty(value);
-  const floatingLabel = mask || hasValue || !!placeholder || floatLabel || isFocused;
+  const floatingLabel = mask || hasValue || !!placeholder || floatLabel || isFocused || props.multiple;
 
   const handleOnChange = (maskedValue, unMasked) => {
     setState({ value: maskedValue, secoundValue: unMasked, init: true });
@@ -158,6 +159,7 @@ TextInput.defaultProps = {
   mask: null,
   disabled: false,
   darkTheme: false,
+  numbersOfLine: 1
 };
 
 TextInput.proptypes = {
