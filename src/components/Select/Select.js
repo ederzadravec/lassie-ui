@@ -28,7 +28,7 @@ export const Select = ({
   const [showModal, setModal] = hooks.useState(false);
 
   const handleSearchData = async (text = '') => {
-    setState(prev => ({ ...prev, isLoading: true }));
+    setState((prev) => ({ ...prev, isLoading: true }));
 
     const result = await onSearchData(text);
 
@@ -56,7 +56,7 @@ export const Select = ({
 
     const label = value
       ? loadedData.find(
-          item => item[format.id] === value[format.id] || item[format.name] === value[format.name]
+          (item) => item[format.id] === value[format.id] || item[format.name] === value[format.name]
         )
       : null;
 
@@ -69,12 +69,12 @@ export const Select = ({
     if (!R.is('array', value) && !value.length) return;
 
     let needUpdate = false;
-    const realValue = value.map(item => {
+    const realValue = value.map((item) => {
       if (item && item[format.name]) return item;
 
       needUpdate = true;
       return loadedData.find(
-        item => item[format.id] === value[format.id] || item[format.name] === value[format.name]
+        (item) => item[format.id] === value[format.id] || item[format.name] === value[format.name]
       );
     });
 
@@ -92,10 +92,7 @@ export const Select = ({
   return (
     <>
       <BaseInput error={error} className={className}>
-        <S.TouchableOpacity
-          activeOpacity={1}
-          onPress={() => setModal(!showModal)}
-          disabled={disabled}>
+        <S.TouchableOpacity activeOpacity={1} onPress={() => setModal(!showModal)}>
           <S.Label float={!!labelValue}>{label}</S.Label>
 
           <S.Input hasError={!!error}>
@@ -113,6 +110,7 @@ export const Select = ({
             format={format}
             handleSearchData={handleSearchData}
             {...props}
+            disabled={disabled}
             value={value}
             staticData={data}
             loadedData={loadedData}
@@ -143,7 +141,7 @@ export const SelectModal = ({
   const [showModal, setModal] = hooks.useState(false);
 
   const handleSearchData = async (text = '') => {
-    setState(prev => ({ ...prev, isLoading: true }));
+    setState((prev) => ({ ...prev, isLoading: true }));
 
     const result = await onSearchData(text);
 
@@ -169,10 +167,7 @@ export const SelectModal = ({
   return (
     <>
       {children && (
-        <S.TouchableOpacity
-          activeOpacity={1}
-          onPress={() => setModal(!showModal)}
-          disabled={disabled}>
+        <S.TouchableOpacity activeOpacity={1} onPress={() => setModal(!showModal)}>
           {children}
         </S.TouchableOpacity>
       )}
@@ -189,7 +184,8 @@ export const SelectModal = ({
           loadedData={loadedData}
           value={value}
           multiple={multiple}
-          />
+          disabled={disabled}
+        />
       </S.ModalSelect>
     </>
   );
