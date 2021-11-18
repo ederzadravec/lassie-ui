@@ -1,11 +1,11 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 import { Header } from '../Header';
 import { CameraComponent, Content, Footer, CameraButton } from './Camera.styled';
 
-export const TakePhoto = ({ sideCam, title, mask, onClose, onTake, config }) => {
-  const handleOnTake = camera => async () => {
+export const TakePhoto = ({ noPickerImage, sideCam, title, mask, onClose, onTake, config }) => {
+  const handleOnTake = (camera) => async () => {
     const options = {
       quality: 0.5,
       width: 1024,
@@ -17,6 +17,16 @@ export const TakePhoto = ({ sideCam, title, mask, onClose, onTake, config }) => 
     const data = await camera.takePictureAsync(options);
 
     onTake(data);
+  };
+
+  const handleOnPickPhoto = () => {
+    const callback = async ({ assets }) => {
+      const picture = assets[0];
+
+      onTake(picture);
+    };
+
+    launchImageLibrary({ mediaType: 'photo', quality: 0.5, includeBase64: true }, callback);
   };
 
   return (
@@ -34,10 +44,10 @@ export const TakePhoto = ({ sideCam, title, mask, onClose, onTake, config }) => 
           </Header>
 
           <Footer>
+            {!noPickerImage && <CameraButton name="picture" onPress={handleOnPickPhoto} />}
+
             {status === 'READY' && (
-              <TouchableOpacity onPress={handleOnTake(camera)}>
-                <CameraButton name="camera-outline" />
-              </TouchableOpacity>
+              <CameraButton onPress={handleOnTake(camera)} name="camera-outline" />
             )}
           </Footer>
         </Content>

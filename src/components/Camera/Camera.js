@@ -4,12 +4,21 @@ import * as S from './Camera.styled';
 import { TakePhoto } from './TakePhoto';
 import { ConfirmPhoto } from './ConfirmPhoto';
 
-const Camera = ({ title, mask, onChange, sideCam, onClose, visible, photoConfig }) => {
+const Camera = ({
+  noPickerImage,
+  title,
+  mask,
+  onChange,
+  sideCam,
+  onClose,
+  visible,
+  photoConfig,
+}) => {
   const [showCamera, setCamera] = React.useState(true);
   const [showConfirmation, setConfirmation] = React.useState(false);
   const [data, setData] = React.useState();
 
-  const handleOnTake = async data => {
+  const handleOnTake = async (data) => {
     setData(data);
     setCamera(false);
     setConfirmation(true);
@@ -22,7 +31,7 @@ const Camera = ({ title, mask, onChange, sideCam, onClose, visible, photoConfig 
     setConfirmation(false);
   };
 
-  const handleOnConfirmation = confirm => {
+  const handleOnConfirmation = (confirm) => {
     if (confirm) {
       onClose && onClose();
       onChange(data);
@@ -41,6 +50,7 @@ const Camera = ({ title, mask, onChange, sideCam, onClose, visible, photoConfig 
       <S.Container>
         {showCamera && (
           <TakePhoto
+            noPickerImage={noPickerImage}
             title={title}
             mask={mask}
             onTake={handleOnTake}
