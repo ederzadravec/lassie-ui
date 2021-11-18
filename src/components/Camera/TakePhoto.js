@@ -44,7 +44,7 @@ export const TakePhoto = ({ noPickerImage, sideCam, title, mask, onClose, onTake
           </Header>
 
           <Footer>
-            {!noPickerImage && <CameraButton name="picture" onPress={handleOnPickPhoto} />}
+            {!noPickerImage && <CameraButton name="file-image-outline" onPress={handleOnPickPhoto} />}
 
             {status === 'READY' && (
               <CameraButton onPress={handleOnTake(camera)} name="camera-outline" />
