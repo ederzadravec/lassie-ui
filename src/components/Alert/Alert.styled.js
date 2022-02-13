@@ -1,10 +1,16 @@
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
-export const Container = styled.Modal`
+export const Container = styled.View`
+  height: ${height};
+  width: ${width};
+  position: absolute;
+  top: 1;
+  left: 1;
   flex: 1;
+  z-index: 20;
 `;
 
 export const SafeAreaView = styled.SafeAreaView`

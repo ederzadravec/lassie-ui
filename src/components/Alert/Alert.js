@@ -24,7 +24,7 @@ const AlertComponent = ({ elevation }) => {
   const [{ current, alerts }, setAlerts] = React.useState({ current: 0, alerts: [] });
 
   open = ({ title, message, actions, color }) => {
-    setAlerts(prev => {
+    setAlerts((prev) => {
       const newAlerts = [
         ...prev.alerts,
         { title, message, color, actions: actions || defaultAction },
@@ -34,13 +34,13 @@ const AlertComponent = ({ elevation }) => {
   };
 
   close = () => {
-    setAlerts(prev => {
+    setAlerts((prev) => {
       const newAlerts = R.dropLast(1, alerts);
       return { current: newAlerts.length - 1, alerts: newAlerts };
     });
   };
 
-  const handleAction = action => async () => {
+  const handleAction = (action) => async () => {
     if (!action) return close();
 
     await action();
@@ -49,8 +49,10 @@ const AlertComponent = ({ elevation }) => {
 
   const alert = alerts.length > 0 ? alerts[current] : false;
 
+  if (!alert) return null;
+
   return (
-    <Container transparent animationType="fade" visible={!!alert}>
+    <Container>
       <SafeAreaView>
         <Content elevation={elevation} style={{ shadowOffset: { height: 0.5 * elevation } }}>
           {alert?.title && (
