@@ -9,7 +9,7 @@ import { Header } from '../Header';
 import { Item } from './Item';
 import * as S from './List.styled';
 
-const semAcentos = (text) => (text ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text);
+const semAcentos = text => (text ? text.normalize('NFD').replace(/[\u0300-\u036f]/g, '') : text);
 
 export const List = ({
   staticData,
@@ -42,23 +42,26 @@ export const List = ({
     });
   }, []);
 
-  const handleSelectItem = (item) => {
+  const handleSelectItem = item => {
     if (!multiple) {
-      onChange(item);
+      const newItem = item?.id === value?.id ? null : item
+      onChange(newItem);
 
-      return onClose();
+      newItem && onClose();
+
+      return;
     }
 
     const selected = getSelected(item);
 
-    const newValue = selected ? value.filter((x) => x.id !== item.id) : [...(value || []), item];
+    const newValue = selected ? value.filter(x => x.id !== item.id) : [...(value || []), item];
 
     onChange(newValue);
   };
 
-  const handleFilterData = (text) => {
+  const handleFilterData = text => {
     const filterData = (data, filter) => {
-      return (data || []).filter((item) => {
+      return (data || []).filter(item => {
         const name = semAcentos(item[format.name]);
         return name.match(new RegExp(`${filter}`, 'i'));
       });
@@ -67,7 +70,7 @@ export const List = ({
     setState({ data: filterData(formatData(state.staticData), semAcentos(text)) });
   };
 
-  const formatData = (result) => {
+  const formatData = result => {
     const data = R.cond([
       [R.isEmpty, () => result],
       [R.is(String), () => R.pathOr([], path.split('.'), result)],
@@ -77,18 +80,18 @@ export const List = ({
 
     if (R.isEmpty(format)) return data;
 
-    return data.map((item) => {
+    return data.map(item => {
       const values = R.path(['keys'], item) ? R.pick(item.keys(), item) : item;
       return { ...values, id: item[format.id].toString(), name: item[format.name] };
     });
   };
 
-  const getSelected = (item) => {
+  const getSelected = item => {
     if (!multiple) {
       return value && item?.id === value[format.id];
     }
 
-    return !!value?.find((x) => item.id === x[format.id]);
+    return !!value?.find(x => item.id === x[format.id]);
   };
 
   return (

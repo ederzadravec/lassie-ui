@@ -1,0 +1,1047 @@
+{
+  "config": {
+    "title": "Lassie Ui",
+    "description": "My awesome app using docz",
+    "menu": [],
+    "version": "1.0.0",
+    "repository": null,
+    "native": false,
+    "themeConfig": {},
+    "separator": "-",
+    "typescript": true
+  },
+  "entries": [
+    {
+      "key": "src/components/Button/Button.mdx",
+      "value": {
+        "name": "Button",
+        "menu": "Components",
+        "route": "components/button",
+        "id": "2b773349a016959194c905ce6ad9d2d4",
+        "filepath": "src/components/Button/Button.mdx",
+        "fullpath": "/Users/ederzadravec/Projects/lassie-ui/src/components/Button/Button.mdx",
+        "link": "",
+        "hidden": false,
+        "slug": "src-components-button-button",
+        "headings": [
+          {
+            "slug": "button",
+            "depth": 1,
+            "value": "Button"
+          },
+          {
+            "slug": "properties",
+            "depth": 2,
+            "value": "Properties"
+          },
+          {
+            "slug": "basic-usage",
+            "depth": 2,
+            "value": "Basic usage"
+          }
+        ]
+      }
+    }
+  ],
+  "props": [
+    {
+      "key": "src/docz/Playground.tsx",
+      "value": [
+        {
+          "tags": {},
+          "description": "",
+          "displayName": "Playground",
+          "methods": [],
+          "props": {}
+        }
+      ]
+    },
+    {
+      "key": "src/components/Button/Button.styled.tsx",
+      "value": []
+    },
+    {
+      "key": "src/components/Button/Button.tsx",
+      "value": [
+        {
+          "tags": {},
+          "description": "",
+          "displayName": "Button",
+          "methods": [],
+          "props": {
+            "variant": {
+              "defaultValue": {
+                "value": "filled"
+              },
+              "description": "",
+              "name": "variant",
+              "parent": {
+                "fileName": "src/components/Button/Button.tsx",
+                "name": "ButtonProps"
+              },
+              "declarations": [
+                {
+                  "fileName": "src/components/Button/Button.tsx",
+                  "name": "ButtonProps"
+                }
+              ],
+              "required": false,
+              "type": {
+                "name": "\"outline\" | \"transparent\" | \"filled\" | undefined"
+              }
+            },
+            "color": {
+              "defaultValue": {
+                "value": "primary"
+              },
+              "description": "",
+              "name": "color",
+              "parent": {
+                "fileName": "src/components/Button/Button.tsx",
+                "name": "ButtonProps"
+              },
+              "declarations": [
+                {
+                  "fileName": "src/components/Button/Button.tsx",
+                  "name": "ButtonProps"
+                }
+              ],
+              "required": false,
+              "type": {
+                "name": "\"primary\" | \"success\" | \"info\" | \"warning\" | \"error\" | undefined"
+              }
+            },
+            "loading": {
+              "defaultValue": null,
+              "description": "",
+              "name": "loading",
+              "parent": {
+                "fileName": "src/components/Button/Button.tsx",
+                "name": "ButtonProps"
+              },
+              "declarations": [
+                {
+                  "fileName": "src/components/Button/Button.tsx",
+                  "name": "ButtonProps"
+                }
+              ],
+              "required": false,
+              "type": {
+                "name": "boolean | undefined"
+              }
+            },
+            "onPress": {
+              "defaultValue": null,
+              "description": "",
+              "name": "onPress",
+              "parent": {
+                "fileName": "src/components/Button/Button.tsx",
+                "name": "ButtonProps"
+              },
+              "declarations": [
+                {
+                  "fileName": "src/components/Button/Button.tsx",
+                  "name": "ButtonProps"
+                }
+              ],
+              "required": false,
+              "type": {
+                "name": "(() => void) | undefined"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "src/components/Provider/Provider.tsx",
+      "value": [
+        {
+          "tags": {},
+          "description": "",
+          "displayName": "Provider",
+          "methods": [],
+          "props": {
+            "theme": {
+              "defaultValue": null,
+              "description": "",
+              "name": "theme",
+              "parent": {
+                "fileName": "/Users/ederzadravec/Projects/lassie-ui/src/components/Provider/Provider.tsx",
+                "name": "ThemeProps"
+              },
+              "declarations": [
+                {
+                  "fileName": "/Users/ederzadravec/Projects/lassie-ui/src/components/Provider/Provider.tsx",
+                  "name": "ThemeProps"
+                }
+              ],
+              "required": false,
+              "type": {
+                "name": "CustomTheme | undefined"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "src/docz/Phone/Phone.styled.tsx",
+      "value": []
+    },
+    {
+      "key": "src/docz/Phone/Phone.tsx",
+      "value": [
+        {
+          "tags": {},
+          "description": "",
+          "displayName": "Phone",
+          "methods": [],
+          "props": {}
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/BaseInput/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "BaseInput",
+          "methods": [],
+          "actualName": "BaseInput",
+          "props": {
+            "error": {
+              "defaultValue": {
+                "value": "''",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/BoxInput/BoxInput.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "BoxInput",
+          "methods": [],
+          "actualName": "BoxInput",
+          "props": {
+            "variant": {
+              "type": {
+                "name": "enum",
+                "value": [
+                  {
+                    "value": "'checkbox'",
+                    "computed": false
+                  },
+                  {
+                    "value": "'radio'",
+                    "computed": false
+                  }
+                ]
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "'checkbox'",
+                "computed": false
+              }
+            },
+            "value": {
+              "type": {
+                "name": "bool"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              }
+            },
+            "label": {
+              "type": {
+                "name": "string"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "''",
+                "computed": false
+              }
+            },
+            "onChange": {
+              "type": {
+                "name": "func"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Button/Button.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Button",
+          "methods": [],
+          "actualName": "Button",
+          "props": {
+            "onPress": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "variant": {
+              "defaultValue": {
+                "value": "'default'",
+                "computed": false
+              },
+              "required": false
+            },
+            "color": {
+              "defaultValue": {
+                "value": "'primary'",
+                "computed": false
+              },
+              "required": false
+            },
+            "disabled": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            },
+            "loading": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Camera/Camera.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Camera",
+          "methods": [],
+          "actualName": "Camera",
+          "props": {
+            "onChange": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "onClose": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "photoConfig": {
+              "defaultValue": {
+                "value": "{}",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        },
+        {
+          "description": "",
+          "displayName": "CameraHOC",
+          "methods": [],
+          "actualName": "CameraHOC"
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Camera/ConfirmPhoto.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "ConfirmPhoto",
+          "methods": [],
+          "actualName": "ConfirmPhoto",
+          "props": {
+            "onConfirm": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "onClose": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Camera/TakePhoto.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "TakePhoto",
+          "methods": [],
+          "actualName": "TakePhoto",
+          "props": {
+            "sideCam": {
+              "defaultValue": {
+                "value": "'back'",
+                "computed": false
+              },
+              "required": false
+            },
+            "onTake": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "onClose": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "config": {
+              "defaultValue": {
+                "value": "{}",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/FormGrid/Column.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Column",
+          "methods": [],
+          "actualName": "Column",
+          "props": {
+            "size": {
+              "defaultValue": {
+                "value": "12",
+                "computed": false
+              },
+              "required": false
+            },
+            "offset": {
+              "defaultValue": {
+                "value": "0",
+                "computed": false
+              },
+              "required": false
+            },
+            "last": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            },
+            "props": {
+              "defaultValue": {
+                "value": "() => ({})",
+                "computed": false
+              },
+              "required": false
+            },
+            "type": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "hide": {
+              "defaultValue": {
+                "value": "() => false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/FormGrid/Row.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Row",
+          "methods": [],
+          "actualName": "Row",
+          "props": {
+            "config": {
+              "defaultValue": {
+                "value": "[]",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/FormGrid/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "FormGrid",
+          "methods": [],
+          "actualName": "FormGrid",
+          "props": {
+            "config": {
+              "defaultValue": {
+                "value": "[]",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/FormLabel/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "FormLabel",
+          "methods": [],
+          "actualName": "FormLabel"
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Grid/Grid.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Grid",
+          "methods": [],
+          "actualName": "Grid"
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Header/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Header",
+          "methods": [],
+          "actualName": "Header",
+          "props": {
+            "left": {
+              "defaultValue": {
+                "value": "[]",
+                "computed": false
+              },
+              "required": false
+            },
+            "right": {
+              "defaultValue": {
+                "value": "[]",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Loader/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Loader",
+          "methods": [],
+          "actualName": "Loader",
+          "props": {
+            "show": {
+              "defaultValue": {
+                "value": "true",
+                "computed": false
+              },
+              "required": false
+            },
+            "title": {
+              "defaultValue": {
+                "value": "'Aguarde...'",
+                "computed": false
+              },
+              "required": false
+            },
+            "transparent": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        },
+        {
+          "description": "",
+          "displayName": "LoaderIcon",
+          "methods": [],
+          "actualName": "LoaderIcon"
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/PhotoInput/PhotoInput.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "PhotoInput",
+          "methods": [],
+          "actualName": "PhotoInput",
+          "props": {
+            "onChange": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "labelSuccess": {
+              "defaultValue": {
+                "value": "'Imagem anexada'",
+                "computed": false
+              },
+              "required": false
+            },
+            "align": {
+              "defaultValue": {
+                "value": "'left'",
+                "computed": false
+              },
+              "required": false
+            },
+            "photoConfig": {
+              "defaultValue": {
+                "value": "{}",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Provider/Provider.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Provider",
+          "methods": [],
+          "actualName": "Provider",
+          "props": {
+            "theme": {
+              "defaultValue": {
+                "value": "{}",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Select/Item.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Item",
+          "methods": [],
+          "actualName": "Item"
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Select/List.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "List",
+          "methods": [],
+          "actualName": "List",
+          "props": {
+            "onChange": {
+              "type": {
+                "name": "func"
+              },
+              "required": true,
+              "description": ""
+            },
+            "onClose": {
+              "type": {
+                "name": "func"
+              },
+              "required": true,
+              "description": ""
+            },
+            "onSearchData": {
+              "type": {
+                "name": "func"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              }
+            },
+            "debounce": {
+              "type": {
+                "name": "number"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "500",
+                "computed": false
+              }
+            },
+            "staticData": {
+              "type": {
+                "name": "union",
+                "value": [
+                  {
+                    "name": "array"
+                  },
+                  {
+                    "name": "object"
+                  }
+                ]
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "null",
+                "computed": false
+              }
+            },
+            "path": {
+              "type": {
+                "name": "union",
+                "value": [
+                  {
+                    "name": "func"
+                  },
+                  {
+                    "name": "string"
+                  },
+                  {
+                    "name": "array"
+                  }
+                ]
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "''",
+                "computed": false
+              }
+            },
+            "format": {
+              "type": {
+                "name": "object"
+              },
+              "required": false,
+              "description": "",
+              "defaultValue": {
+                "value": "{\n  id: 'id',\n  name: 'name'\n}",
+                "computed": false
+              }
+            },
+            "variant": {
+              "defaultValue": {
+                "value": "'static'",
+                "computed": false
+              },
+              "required": false
+            },
+            "dinamicOnlyFirst": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Select/Select.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Select",
+          "methods": [],
+          "actualName": "Select",
+          "props": {
+            "onChange": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "format": {
+              "defaultValue": {
+                "value": "{\n  id: 'id',\n  name: 'name'\n}",
+                "computed": false
+              },
+              "required": false
+            },
+            "variant": {
+              "defaultValue": {
+                "value": "'static'",
+                "computed": false
+              },
+              "required": false
+            },
+            "multiple": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        },
+        {
+          "description": "",
+          "displayName": "SelectModal",
+          "methods": [],
+          "actualName": "SelectModal",
+          "props": {
+            "onChange": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "format": {
+              "defaultValue": {
+                "value": "{\n  id: 'id',\n  name: 'name'\n}",
+                "computed": false
+              },
+              "required": false
+            },
+            "variant": {
+              "defaultValue": {
+                "value": "'static'",
+                "computed": false
+              },
+              "required": false
+            },
+            "multiple": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Text/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Text",
+          "methods": [],
+          "actualName": "Text",
+          "props": {
+            "bold": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/TextInput/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "TextInput",
+          "methods": [],
+          "actualName": "TextInput",
+          "props": {
+            "onChange": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "onBlur": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "onFocus": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "onEndEditing": {
+              "defaultValue": {
+                "value": "() => {}",
+                "computed": false
+              },
+              "required": false
+            },
+            "floatLabel": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            },
+            "debounce": {
+              "defaultValue": {
+                "value": "250",
+                "computed": false
+              },
+              "required": false
+            },
+            "align": {
+              "defaultValue": {
+                "value": "'left'",
+                "computed": false
+              },
+              "required": false
+            },
+            "mask": {
+              "defaultValue": {
+                "value": "null",
+                "computed": false
+              },
+              "required": false
+            },
+            "disabled": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            },
+            "darkTheme": {
+              "defaultValue": {
+                "value": "false",
+                "computed": false
+              },
+              "required": false
+            },
+            "numbersOfLine": {
+              "defaultValue": {
+                "value": "1",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    },
+    {
+      "key": "build/module/components/Space/index.js",
+      "value": [
+        {
+          "description": "",
+          "displayName": "Space",
+          "methods": [],
+          "actualName": "Space",
+          "props": {
+            "top": {
+              "defaultValue": {
+                "value": "0",
+                "computed": false
+              },
+              "required": false
+            },
+            "left": {
+              "defaultValue": {
+                "value": "0",
+                "computed": false
+              },
+              "required": false
+            },
+            "bottom": {
+              "defaultValue": {
+                "value": "0",
+                "computed": false
+              },
+              "required": false
+            },
+            "right": {
+              "defaultValue": {
+                "value": "0",
+                "computed": false
+              },
+              "required": false
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
