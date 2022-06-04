@@ -22,11 +22,16 @@ export const useForm = (
 
   const validateData = (data = {}) => {
     return Object.keys(validations).reduce((acc, key) => {
+      const validationList =
+        typeof validations[key] === 'function'
+          ? (validations[key])(data)
+          : (validations[key] );
+
       const error = R.reduceWhile(
-        (acc, v) => !acc,
-        (acc, v) => (v[0](getValue(key, data), data) ? v[1] : acc),
+        (acc) => !acc,
+        (acc, validation) => (validation[0](getValue(key, data), data) ? validation[1] : acc),
         null,
-        validations[key]
+        validationList
       );
 
       return { ...acc, ...(error ? { [key]: error } : {}) };
